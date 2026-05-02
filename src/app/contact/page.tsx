@@ -2,23 +2,21 @@ import Image from "next/image";
 
 export default function ContactPage() {
   return (
-    <main className="container py-12 space-y-20">
+    <main className="container py-10 md:py-14 space-y-16 md:space-y-20">
 
-      {/* HEADER */}
-      <section className="text-center max-w-xl mx-auto">
-        <h1 className="font-heading text-3xl md:text-4xl mb-2 text-[var(--primary)]">
+      <section className="text-center max-w-xl mx-auto space-y-2">
+        <h1 className="font-heading text-2xl md:text-4xl text-primary">
           Get in Touch
         </h1>
-        <p className="font-body text-sm text-[var(--foreground)] opacity-70">
+        <p className="font-body text-xs md:text-sm text-body opacity-70">
           We'd love to hear from you!
         </p>
       </section>
 
-      {/* 🔥 GRID: FORM + CONTACT INFO */}
-      <section className="grid md:grid-cols-2 gap-10 items-start">
+      <section className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
 
-        {/* LEFT → FORM */}
-        <div className="space-y-4">
+        <div className="space-y-4 p-5 md:p-6 rounded-2xl 
+        bg-white/5 backdrop-blur-md border border-white/10 shadow-lg">
 
           {[
             { type: "text", placeholder: "Your Name" },
@@ -31,11 +29,11 @@ export default function ContactPage() {
               placeholder={field.placeholder}
               className="w-full px-4 py-3 rounded-xl 
               font-body text-sm
-              border border-[rgba(75,46,43,0.2)] 
-              bg-[var(--background)] text-[var(--foreground)]
-              hover:border-[var(--secondary)]
-              focus:outline-none focus:border-[var(--primary)] 
-              focus:ring-2 focus:ring-[rgba(75,46,43,0.15)] 
+              border border-white/10
+              bg-transparent text-foreground
+              placeholder:text-gray-400
+              focus:outline-none focus:border-primary
+              focus:ring-2 focus:ring-primary/20
               transition-all duration-300"
             />
           ))}
@@ -45,25 +43,23 @@ export default function ContactPage() {
             rows={5}
             className="w-full px-4 py-3 rounded-xl 
             font-body text-sm
-            border border-[rgba(75,46,43,0.2)] 
-            bg-[var(--background)] text-[var(--foreground)]
-            hover:border-[var(--secondary)]
-            focus:outline-none focus:border-[var(--primary)] 
-            focus:ring-2 focus:ring-[rgba(75,46,43,0.15)] 
+            border border-white/10
+            bg-transparent text-foreground
+            placeholder:text-gray-400
+            focus:outline-none focus:border-primary
+            focus:ring-2 focus:ring-primary/20
             transition-all duration-300"
           />
 
           <button className="w-full py-3 rounded-xl text-white font-body
-          bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] 
-          hover:scale-[1.02] hover:shadow-md 
+          bg-gradient-to-r from-primary to-secondary
+          hover:scale-[1.02] hover:shadow-lg
           transition-all duration-300">
             Send Message
           </button>
-
         </div>
 
-        {/* RIGHT → CONTACT DETAILS */}
-        <div className="space-y-6">
+        <div className="space-y-5">
 
           {[
             { icon: "📍", title: "Address", text: "123 Coffee Street, Brew City,\nCA 90210, USA" },
@@ -73,25 +69,23 @@ export default function ContactPage() {
           ].map((item, i) => (
             <div
               key={i}
-              className="flex items-start gap-4 p-4 rounded-xl 
-              bg-[var(--background)] 
-              border border-[rgba(75,46,43,0.2)] 
-              shadow-soft"
+              className="flex items-start gap-4 p-4 md:p-5 rounded-xl 
+              bg-white/5 backdrop-blur-md
+              border border-white/10 
+              shadow-md hover:shadow-lg
+              transition-all duration-300"
             >
 
-              {/* ICON */}
               <div className="p-3 rounded-lg 
-              bg-[var(--secondary)]/20 
-              text-xl">
+              bg-secondary/20 text-lg md:text-xl">
                 {item.icon}
               </div>
 
-              {/* TEXT */}
               <div>
-                <h4 className="font-body font-semibold text-[var(--primary)]">
+                <h4 className="font-body font-semibold text-primary text-sm md:text-base">
                   {item.title}
                 </h4>
-                <p className="font-body text-sm opacity-70 whitespace-pre-line text-[var(--foreground)]">
+                <p className="font-body text-xs md:text-sm opacity-70 whitespace-pre-line text-foreground">
                   {item.text}
                 </p>
               </div>
@@ -103,16 +97,24 @@ export default function ContactPage() {
 
       </section>
 
-      {/* 🔥 MAP AT BOTTOM */}
-      <section className="rounded-2xl overflow-hidden
-      border border-[rgba(75,46,43,0.2)] shadow-soft">
-        <Image
-          src="/images/contact/map.jpg"
-          alt="Map"
-          width={1200}
-          height={400}
-          className="w-full h-[320px] object-cover"
-        />
+      <section className="rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+
+        <div className="relative">
+          <Image
+            src="/images/contact/map.jpg"
+            alt="Map"
+            width={1200}
+            height={400}
+            className="w-full h-[260px] md:h-[360px] object-cover"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+
+          <div className="absolute bottom-4 left-4 text-white text-sm font-body">
+            Visit Our Location 📍
+          </div>
+        </div>
+
       </section>
 
     </main>

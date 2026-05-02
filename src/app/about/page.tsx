@@ -2,32 +2,29 @@ import Image from "next/image";
 
 const AboutPage = () => {
   return (
-    <main className="container py-12 space-y-20">
+    <main className="container py-10 md:py-14 space-y-16 md:space-y-24">
 
-      {/* OUR STORY */}
-      <section className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         
-        {/* TEXT */}
-        <div>
-          <h2 className="font-heading text-3xl md:text-4xl mb-3 text-[var(--primary)]">
+        <div className="text-center md:text-left">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl mb-3 text-primary">
             Our Story
           </h2>
 
-          <div className="flex items-center gap-3 mb-5 text-[var(--secondary)]">
-            <span className="w-12 h-[1px] bg-[var(--secondary)]" />
+          <div className="flex items-center justify-center md:justify-start gap-3 mb-5 text-secondary">
+            <span className="w-10 md:w-12 h-[1px] bg-secondary" />
             ☕
-            <span className="w-12 h-[1px] bg-[var(--secondary)]" />
+            <span className="w-10 md:w-12 h-[1px] bg-secondary" />
           </div>
 
-          <p className="font-body text-sm md:text-base leading-relaxed text-[var(--foreground)] opacity-80">
+          <p className="font-body text-sm sm:text-base md:text-lg leading-relaxed text-body opacity-80">
             Brewista Cafe was born out of a love for great coffee and warm spaces.
             Since 2018, we've been serving handcrafted coffee and delicious treats
             with passion.
           </p>
         </div>
 
-        {/* IMAGE */}
-        <div className="relative h-[320px] md:h-[420px] rounded-2xl overflow-hidden shadow-soft">
+        <div className="relative h-[260px] sm:h-[320px] md:h-[420px] rounded-2xl overflow-hidden shadow-lg">
           <Image
             src="/images/about1.jpg"
             alt="Cafe Interior"
@@ -38,11 +35,10 @@ const AboutPage = () => {
 
       </section>
 
-      {/* OUR PASSION */}
-      <section className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         
         {/* IMAGE */}
-        <div className="relative h-[350px] md:h-[500px] rounded-2xl overflow-hidden order-1 md:order-none shadow-soft">
+        <div className="relative h-[260px] sm:h-[320px] md:h-[500px] rounded-2xl overflow-hidden order-1 md:order-none shadow-lg">
           <Image
             src="/images/about2.jpg"
             alt="Barista"
@@ -52,18 +48,18 @@ const AboutPage = () => {
         </div>
 
         {/* TEXT */}
-        <div>
-          <h2 className="font-heading text-3xl md:text-4xl mb-3 text-[var(--primary)]">
+        <div className="text-center md:text-left">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl mb-3 text-primary">
             Our Passion
           </h2>
 
-          <div className="flex items-center gap-3 mb-5 text-[var(--secondary)]">
-            <span className="w-12 h-[1px] bg-[var(--secondary)]" />
+          <div className="flex items-center justify-center md:justify-start gap-3 mb-5 text-secondary">
+            <span className="w-10 md:w-12 h-[1px] bg-secondary" />
             ☕
-            <span className="w-12 h-[1px] bg-[var(--secondary)]" />
+            <span className="w-10 md:w-12 h-[1px] bg-secondary" />
           </div>
 
-          <p className="font-body text-sm md:text-base leading-relaxed text-[var(--foreground)] opacity-80">
+          <p className="font-body text-sm sm:text-base md:text-lg leading-relaxed text-body opacity-80">
             We believe coffee is more than a drink — it's an experience.
             Our baristas craft every cup with care and perfection.
           </p>
@@ -71,77 +67,78 @@ const AboutPage = () => {
 
       </section>
 
-      {/* VALUES */}
       <section className="text-center">
-        <h2 className="font-heading text-3xl md:text-4xl mb-3 text-[var(--primary)]">
+        <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl mb-3 text-primary">
           Our Values
         </h2>
 
-        <div className="flex justify-center items-center gap-3 mb-12 text-[var(--secondary)]">
-          <span className="w-12 h-[1px] bg-[var(--secondary)]" />
+        <div className="flex justify-center items-center gap-3 mb-12 md:mb-16 text-secondary">
+          <span className="w-10 md:w-12 h-[1px] bg-secondary" />
           ☕
-          <span className="w-12 h-[1px] bg-[var(--secondary)]" />
+          <span className="w-10 md:w-12 h-[1px] bg-secondary" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16">
           {[
-            { title: "Quality", desc: "We use the best ingredients" },
-            { title: "Community", desc: "We create a place for everyone" },
-            { title: "Sustainability", desc: "We care for our planet" },
-            { title: "Passion", desc: "We love what we do" },
+            { image: "/images/icon1.png", title: "Quality", desc: "We use the best ingredients" },
+            { image: "/images/icon2.png", title: "Community", desc: "We create a place for everyone" },
+            { image: "/images/icon3.png", title: "Sustainability", desc: "We care for our planet" },
+            { image: "/images/icon4.png", title: "Passion", desc: "We love what we do" },
           ].map((item, i) => (
-            <div
-              key={i}
-              className="p-4 rounded-xl transition bg-[var(--background)] hover:bg-[rgba(75,46,43,0.08)]"
-            >
-              <div className="text-3xl mb-2 text-[var(--secondary)]">☕</div>
+            <div key={i} className="flex flex-col items-center space-y-3 md:space-y-4">
 
-              <h4 className="font-body font-semibold text-[var(--primary)]">
+              <div className="w-14 h-14 md:w-20 md:h-20 flex items-center justify-center">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={80}
+                  height={80}
+                  className="object-contain w-full h-full"
+                />
+              </div>
+
+              <h4 className="font-body font-medium text-sm md:text-lg text-primary">
                 {item.title}
               </h4>
 
-              <p className="text-sm font-body text-[var(--foreground)] opacity-70">
+              <p className="text-xs md:text-sm text-body opacity-70 max-w-[140px] md:max-w-[160px]">
                 {item.desc}
               </p>
+
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA BANNER */}
-      <section className="relative rounded-2xl overflow-hidden">
-        <Image
-          src="/images/about3.jpg"
-          alt="Visit Cafe"
-          width={1200}
-          height={400}
-          className="w-full h-[360px] object-cover"
-        />
+      <section className="grid md:grid-cols-2 gap-6 items-center rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 shadow-lg">
 
-        {/* ✅ Overlay FIX (important for readability) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/80 via-[var(--primary)]/50 to-transparent" />
+        <div className="p-6 md:p-10 text-center md:text-left">
+          <h3 className="font-heading text-xl md:text-3xl mb-2 text-primary">
+            Come Visit Us
+          </h3>
 
-        <div className="absolute inset-0 flex items-center justify-between px-6 md:px-12">
-          
-          <div>
-            <h3 className="font-heading text-2xl md:text-3xl mb-2 text-[var(--text-heading)]">
-              Come Visit Us
-            </h3>
+          <p className="text-sm md:text-base mb-4 text-body font-body opacity-80">
+            Experience the perfect blend of coffee, comfort, and community.
+          </p>
 
-            <p className="text-sm md:text-base mb-4 text-[var(--text-body)] font-body">
-              Experience the perfect blend of coffee, comfort, and community.
-            </p>
+          <button className="btn-primary px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base">
+            Find Us
+          </button>
 
-            <button className="btn-primary font-body">
-              Find Us
-            </button>
-          </div>
-
-          <div className="hidden md:block text-sm text-[var(--text-muted)] font-body text-right">
+          <div className="mt-4 text-xs md:text-sm text-muted font-body">
             Open daily <br /> Warm & cozy vibes
           </div>
-
         </div>
+
+        <div className="relative h-[220px] md:h-[360px]">
+          <Image
+            src="/images/about3.jpg"
+            alt="Visit Cafe"
+            fill
+            className="object-cover"
+          />
+        </div>
+
       </section>
 
     </main>

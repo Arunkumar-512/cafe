@@ -8,26 +8,30 @@ export default function OrdersPage() {
   const { cart } = useCart();
 
   return (
-    <main className="container py-14 space-y-14">
+    <main className="container py-10 md:py-14 space-y-12">
 
-      {/* HEADER */}
-      <div className="text-center max-w-xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-heading mb-3 text-[var(--primary)]">
+      <div className="text-center max-w-xl mx-auto space-y-2">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-heading text-primary">
           Order Online
         </h1>
-        <p className="text-sm text-[var(--foreground)] opacity-70">
+        <p className="text-xs sm:text-sm text-body opacity-70">
           Select your favorite items and enjoy fresh handcrafted coffee.
         </p>
       </div>
 
-      {/* MAIN GRID */}
-      <div className="grid md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
 
-        {/* LEFT: ITEMS */}
-        <div className="md:col-span-2 space-y-6">
+        <div className="md:col-span-2 space-y-4 md:space-y-5">
           {cart.length === 0 ? (
-            <div className="card p-6 text-center">
-              <p className="text-sm text-[var(--foreground)] opacity-60">
+            <div
+              className="
+              rounded-2xl p-6 text-center
+              bg-transparent
+              border border-white/10
+              backdrop-blur-md
+              "
+            >
+              <p className="text-sm text-body opacity-60">
                 Your cart is empty ☕
               </p>
             </div>
@@ -38,66 +42,82 @@ export default function OrdersPage() {
           )}
         </div>
 
-        {/* RIGHT: CART */}
-        <CartDrawer />
+        <div className="flex flex-col gap-6 md:sticky md:top-24 h-fit">
+
+          <CartDrawer />
+
+          <div
+            className="
+            rounded-2xl p-5 md:p-6
+            bg-transparent
+            border border-white/10
+            backdrop-blur-md
+            "
+          >
+            <h3 className="font-heading text-base md:text-lg mb-2 text-primary">
+              Add a Special Note
+            </h3>
+
+            <p className="text-xs md:text-sm text-body opacity-70 mb-3">
+              Any special instructions for your order?
+            </p>
+
+            <textarea
+              rows={4}
+              placeholder="Write your note here..."
+              className="
+              w-full px-4 py-3 rounded-xl 
+              border border-white/10 
+              bg-transparent text-foreground
+              placeholder:text-gray-400
+              focus:outline-none focus:border-primary
+              focus:ring-2 focus:ring-primary/20
+              transition-all duration-300 text-sm
+              "
+            />
+          </div>
+
+        </div>
       </div>
 
-      {/* NOTE */}
-      <div className="max-w-xl card p-6 shadow-soft">
-        <h3 className="font-heading text-lg mb-2 text-[var(--primary)]">
-          Add a Special Note
-        </h3>
-        <p className="text-sm text-[var(--foreground)] opacity-70 mb-3">
-          Any special instructions for your order?
-        </p>
+      <div className="rounded-2xl p-8 md:p-10 relative overflow-hidden">
 
-        <textarea
-          rows={4}
-          placeholder="Write your note here..."
-          className="w-full px-4 py-3 rounded-lg 
-          border border-[rgba(75,46,43,0.25)] 
-          bg-[var(--background)] text-[var(--foreground)]
-          placeholder:text-[var(--text-muted)]
-          hover:border-[var(--primary)]
-          focus:outline-none focus:border-[var(--primary)] 
-          focus:ring-2 focus:ring-[rgba(75,46,43,0.15)] 
-          transition-all"
+        <div className="absolute inset-0 
+          bg-gradient-to-br 
+          from-[var(--primary)] 
+          via-[#3b241f] 
+          to-black 
+          opacity-95"
         />
-      </div>
 
-      {/* FEATURES */}
-      <div className="rounded-2xl p-8 grid md:grid-cols-3 gap-6 text-center card">
+        <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10" />
 
-        <div className="space-y-2">
-          <div className="text-3xl text-[var(--secondary)]">🚚</div>
-          <h4 className="font-heading text-[var(--primary)]">
-            Fast Delivery
-          </h4>
-          <p className="text-sm text-[var(--foreground)] opacity-70">
-            Quick & reliable delivery
-          </p>
+        {/* CONTENT */}
+        <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+
+          {[
+            { image: "/images/icon5.png", title: "Fast Delivery", desc: "Quick & reliable delivery" },
+            { image: "/images/icon6.png", title: "Secure Payment", desc: "100% safe & secure" },
+            { image: "/images/icon7.png", title: "Best Quality", desc: "Premium ingredients guaranteed" },
+          ].map((item, i) => (
+            <div key={i} className="space-y-3 flex flex-col items-center">
+
+              <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center">
+                <img src={item.image} alt={item.title} className="object-contain" />
+              </div>
+
+              <h4 className="font-heading text-sm md:text-base text-heading-inverse">
+                {item.title}
+              </h4>
+
+              <p className="text-xs md:text-sm text-body-inverse opacity-80 font-body">
+                {item.desc}
+              </p>
+
+            </div>
+          ))}
+
         </div>
-
-        <div className="space-y-2">
-          <div className="text-3xl text-[var(--secondary)]">💳</div>
-          <h4 className="font-heading text-[var(--primary)]">
-            Secure Payment
-          </h4>
-          <p className="text-sm text-[var(--foreground)] opacity-70">
-            100% safe & secure
-          </p>
-        </div>
-
-        <div className="space-y-2">
-          <div className="text-3xl text-[var(--secondary)]">⭐</div>
-          <h4 className="font-heading text-[var(--primary)]">
-            Best Quality
-          </h4>
-          <p className="text-sm text-[var(--foreground)] opacity-70">
-            Premium ingredients guaranteed
-          </p>
-        </div>
-
       </div>
 
     </main>

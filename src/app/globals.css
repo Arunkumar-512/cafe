@@ -2,31 +2,28 @@
 
 /* 🌿 Café Theme */
 :root {
-  /* Base */
   --background: #F5EFE6;
   --foreground: #2B2B2B;
 
-  /* Brand */
   --primary: #4B2E2B;
   --secondary: #A67C52;
   --accent: #D9A441;
 
-  /* ✨ TEXT SYSTEM (FIXED for light mode) */
-  --text-heading: #3E2723;   /* darker for readability */
-  --text-body: #5C4A3F;      /* medium tone */
-  --text-muted: #8A7A6A;     /* subtle */
+  --text-heading: #3E2723;
+  --text-body: #5C4A3F;
+  --text-muted: #8A7A6A;
 
-  /* Inverse (for dark areas like hero/footer) */
+  --text-heading-inverse: #EDE6DC;
+  --text-body-inverse: #D6CEC2;
+  --text-muted-inverse: #B8B0A5;
   --text-heading-inverse: #EDE6DC;
   --text-body-inverse: #D6CEC2;
   --text-muted-inverse: #B8B0A5;
 
-  /* Fonts */
   --font-heading: var(--font-pacifico);
   --font-body: var(--font-raleway);
 }
 
-/* 🌙 Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #1a1a1a;
@@ -42,27 +39,23 @@
   }
 }
 
-/* 🌍 Base */
 body {
   background: var(--background);
-  color: var(--text-body); /* ✅ FIX: direct variable instead of @apply */
+  color: var(--text-body);
   font-family: var(--font-body), sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ✨ Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading), cursive;
   letter-spacing: 0.5px;
-  color: var(--text-heading); /* ✅ FIX */
+  color: var(--text-heading);
 }
 
-/* Optional utility */
 .heading-font {
   font-family: var(--font-heading), cursive;
 }
 
-/* 📦 Container */
 .container {
   max-width: 1440px;
   margin: 0 auto;
@@ -70,7 +63,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 1.5rem;
 }
 
-/* 🔥 BUTTON */
 .btn-primary {
   background: linear-gradient(
     to right,
@@ -88,7 +80,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* 🧾 INPUT */
 .input {
   background: #fffdf9;
   border: 1px solid rgba(75, 46, 43, 0.25);
@@ -108,7 +99,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 2px rgba(75, 46, 43, 0.15);
 }
 
-/* 📦 CARD */
 .card {
   background: #f9f6f1;
   border: 1px solid rgba(75, 46, 43, 0.15);
@@ -121,7 +111,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-/* 🔥 Section spacing */
 .section {
   padding: 4rem 0;
 }

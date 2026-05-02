@@ -25,29 +25,27 @@ export default function Page() {
       : galleryItems.filter((i) => i.category === active);
 
   return (
-    <main className="py-16 space-y-12">
+    <main className="py-12 md:py-16 space-y-12 md:space-y-16">
 
-      {/* HEADER */}
       <div className="container text-center">
 
-        <h1 className="font-heading text-4xl md:text-5xl mb-3 text-[var(--primary)]">
+        <h1 className="font-heading text-3xl md:text-5xl mb-3 text-primary">
           Our Gallery
         </h1>
 
-        <p className="font-body text-sm text-[var(--foreground)] opacity-70 mb-8">
+        <p className="font-body text-xs md:text-sm text-body opacity-70 mb-8">
           A glimpse into our cozy café moments
         </p>
 
-        {/* FILTER BUTTONS */}
-        <div className="flex justify-center gap-3 flex-wrap">
+        <div className="flex justify-center gap-2 md:gap-3 flex-wrap mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-body border transition-all duration-300 ${
+              className={`px-4 md:px-5 py-2 rounded-full text-xs md:text-sm font-body border transition-all duration-300 ${
                 active === cat
-                  ? "bg-[var(--primary)] text-[var(--text-heading)] border-[var(--primary)] shadow-soft"
-                  : "bg-[var(--background)] text-[var(--primary)] border-[rgba(75,46,43,0.25)] hover:bg-[var(--primary)] hover:text-[var(--text-heading)]"
+                  ? "bg-primary text-white border-primary shadow-md"
+                  : "bg-transparent text-body border-gray-300 hover:bg-primary hover:text-white"
               }`}
             >
               {cat}
@@ -56,13 +54,13 @@ export default function Page() {
         </div>
       </div>
 
-      {/* GRID */}
-      <div className="container grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
         {filtered.map((item) => (
           <div
             key={item.id}
-            className="relative h-[240px] rounded-2xl overflow-hidden group shadow-soft"
+            className="relative h-[220px] sm:h-[240px] md:h-[260px] rounded-2xl overflow-hidden group shadow-lg"
           >
+
             <Image
               src={item.src}
               alt="gallery"
@@ -70,20 +68,26 @@ export default function Page() {
               className="object-cover transition duration-500 group-hover:scale-110"
             />
 
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-[var(--primary)]/30 opacity-0 group-hover:opacity-100 transition" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
 
-            {/* CATEGORY TAG */}
-            <div className="absolute bottom-3 left-3 bg-[var(--background)]/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-body text-[var(--primary)]">
-              {item.category}
+            <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition duration-300">
+
+              <p className="text-white text-sm font-body">
+                {item.category}
+              </p>
+
+              <span className="text-xs text-gray-300">
+                View Moment →
+              </span>
+
             </div>
+
           </div>
         ))}
       </div>
 
-      {/* LOAD MORE */}
-      <div className="text-center">
-        <button className="btn-primary font-body px-6 py-3 rounded-xl">
+      <div className="text-center mt-4">
+        <button className="btn-primary font-body px-6 py-2.5 md:py-3 text-sm md:text-base rounded-xl hover:scale-105 transition">
           Load More
         </button>
       </div>

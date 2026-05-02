@@ -1,40 +1,37 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="space-y-16 md:space-y-24">
 
-      {/* HERO */}
-      <section className="container mt-6">
-        <div className="relative h-[75vh] rounded-2xl overflow-hidden">
+      <section className="container mt-4 md:mt-6">
+        <div className="relative h-[65vh] md:h-[75vh] rounded-2xl overflow-hidden">
 
           <Image
             src="/images/home_bg.jpg"
             alt="Coffee"
             fill
             className="object-cover"
+            priority
           />
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-          <div className="absolute inset-0 flex items-center px-6 md:px-12">
-            <div className="max-w-xl">
+          <div className="absolute inset-0 flex items-center px-5 md:px-12">
+            <div className="max-w-lg">
 
-              {/* ✅ Correct: inverse text on dark bg */}
-              <h2 className="font-heading text-4xl md:text-6xl mb-4 leading-tight text-heading-inverse drop-shadow-md">
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-6xl mb-4 leading-tight text-heading-inverse">
                 Fresh Coffee,
                 <br /> Cozy Vibes
               </h2>
 
-              <p className="font-body mb-6 text-lg md:text-xl text-body-inverse">
+              <p className="font-body mb-6 text-base sm:text-lg md:text-xl text-body-inverse">
                 Handcrafted coffee made with love, just for you.
               </p>
 
-              <button className="btn-primary font-body">
+              <button className="btn-primary font-body px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base">
                 Order Now
               </button>
             </div>
@@ -42,32 +39,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
       <section className="section text-center">
         <div className="container">
 
-          {/* ✅ FIX: use primary for headings on light bg */}
-          <h3 className="font-heading text-3xl mb-10 text-primary">
+          <h3 className="font-heading text-2xl md:text-4xl mb-8 md:mb-12 text-primary">
             Why Choose Us
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
               { title: "Premium Quality", desc: "We use the finest coffee beans" },
               { title: "Skilled Baristas", desc: "Expertly crafted just for you" },
               { title: "Cozy Atmosphere", desc: "A perfect place to relax" },
               { title: "Sustainable", desc: "We care for the planet" },
             ].map((item, index) => (
-              <div key={index}>
+              <div key={index} className="space-y-3">
 
-                {/* ✅ use tailwind color token */}
-                <div className="text-3xl mb-3 text-secondary">☕</div>
+                <div className="text-2xl md:text-3xl text-secondary">☕</div>
 
-                <h4 className="font-semibold font-body text-primary">
+                <h4 className="font-semibold font-body text-sm md:text-base text-primary">
                   {item.title}
                 </h4>
 
-                <p className="text-sm text-body font-body">
+                <p className="text-xs md:text-sm text-body font-body opacity-80">
                   {item.desc}
                 </p>
 
@@ -77,93 +71,104 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURE */}
-      <section className="container grid md:grid-cols-2 gap-6 items-center">
+      <section className="container grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 
-        <div className="relative h-[420px] rounded-3xl overflow-hidden">
+        <div className="relative h-[260px] sm:h-[320px] md:h-[420px] rounded-2xl md:rounded-3xl overflow-hidden">
           <Image
             src="/images/iced_coffee.jpg"
             alt="Iced Coffee"
             fill
-            className="object-cover hover:scale-105 transition"
+            className="object-cover hover:scale-105 transition duration-500"
           />
         </div>
 
-        <div className="p-6">
+        <div className="p-2 md:p-6 text-center md:text-left">
 
-          {/* ✅ FIX: primary instead of heading */}
-          <h3 className="font-heading text-3xl md:text-5xl mb-4 leading-tight text-primary">
-            Specialty Coffee <br /> Made for You
+          <h3 className="font-heading text-2xl sm:text-3xl md:text-5xl mb-4 leading-tight text-primary">
+            Specialty Coffee <br className="hidden md:block" /> Made for You
           </h3>
 
-          <p className="mb-6 text-body font-body">
+          <p className="mb-6 text-sm md:text-base text-body font-body opacity-80">
             From rich espresso to smooth lattes, every sip is a moment of happiness.
           </p>
 
-          <button className="btn-primary font-body">
+          <button className="btn-primary font-body px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base">
             Explore Menu
           </button>
         </div>
 
       </section>
+<footer className="py-8 md:py-10">
+  <div className="container rounded-2xl shadow-card bg-primary text-heading-inverse">
+    
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 
+    gap-8 md:gap-10 px-5 md:px-6 py-8 md:py-10 text-left">
 
-      {/* FOOTER */}
-      <footer className="py-10">
-        <div className="container rounded-xl shadow-card bg-primary text-heading-inverse">
-          
-          <div className="grid md:grid-cols-4 gap-10 px-6 py-10">
+      {/* BRAND */}
+      <div>
+        <h4 className="font-heading text-lg md:text-xl mb-3">☕ Brewista</h4>
+        <p className="text-xs md:text-sm text-body-inverse font-body opacity-80 leading-relaxed">
+          A cozy coffee shop serving premium coffee since 2018.
+        </p>
+      </div>
 
-            {/* Brand */}
-            <div>
-              <h4 className="font-heading text-xl mb-3">☕ Brewista</h4>
-              <p className="text-sm text-body-inverse font-body">
-                A cozy coffee shop serving premium coffee since 2018.
-              </p>
-            </div>
+      {/* LINKS */}
+      <div>
+        <h5 className="font-heading mb-3 md:mb-4 text-sm md:text-base">
+          Quick Links
+        </h5>
+        <ul className="space-y-2 text-xs md:text-sm text-body-inverse font-body">
+          <li className="hover:text-accent transition cursor-pointer">Home</li>
+          <li className="hover:text-accent transition cursor-pointer">Menu</li>
+          <li className="hover:text-accent transition cursor-pointer">About</li>
+          <li className="hover:text-accent transition cursor-pointer">Gallery</li>
+          <li className="hover:text-accent transition cursor-pointer">Contact</li>
+        </ul>
+      </div>
 
-            {/* Links */}
-            <div>
-              <h5 className="font-heading mb-4">Quick Links</h5>
-              <ul className="space-y-2 text-sm text-body-inverse font-body">
-                <li className="hover:text-accent cursor-pointer transition">Home</li>
-                <li className="hover:text-accent cursor-pointer transition">Menu</li>
-                <li className="hover:text-accent cursor-pointer transition">About</li>
-                <li className="hover:text-accent cursor-pointer transition">Gallery</li>
-                <li className="hover:text-accent cursor-pointer transition">Contact</li>
-              </ul>
-            </div>
+      {/* HOURS */}
+      <div>
+        <h5 className="font-heading mb-3 md:mb-4 text-sm md:text-base">
+          Opening Hours
+        </h5>
+        <p className="text-xs md:text-sm text-body-inverse font-body opacity-80 leading-relaxed">
+          Mon - Fri: 8AM - 9PM <br />
+          Sat - Sun: 9AM - 8PM
+        </p>
+      </div>
 
-            {/* Hours */}
-            <div>
-              <h5 className="font-heading mb-4">Opening Hours</h5>
-              <p className="text-sm text-body-inverse font-body">
-                Mon - Fri: 8AM - 9PM <br />
-                Sat - Sun: 9AM - 8PM
-              </p>
-            </div>
+      {/* SUBSCRIBE */}
+      <div>
+        <h5 className="font-heading mb-3 md:mb-4 text-sm md:text-base">
+          Subscribe
+        </h5>
 
-            {/* Subscribe */}
-            <div>
-              <h5 className="font-heading mb-4">Subscribe</h5>
-              <div className="flex items-center gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-3 py-2 rounded-md text-primary text-sm bg-white font-body"
-                />
-                <button className="btn-primary text-sm px-4 py-2 font-body">
-                  →
-                </button>
-              </div>
-            </div>
+        {/* MOBILE: stacked | DESKTOP: inline */}
+        <div className="flex flex-col sm:flex-row gap-2">
+          <input
+            type="email"
+            placeholder="Your email"
+            className="w-full px-3 py-2 rounded-md 
+            text-primary text-xs md:text-sm 
+            bg-white font-body outline-none"
+          />
 
-          </div>
-
-          <div className="text-center text-sm text-muted-inverse pb-6 font-body">
-            © 2024 Brewista Cafe. All Rights Reserved.
-          </div>
+          <button className="btn-primary text-xs md:text-sm px-4 py-2 w-full sm:w-auto">
+            →
+          </button>
         </div>
-      </footer>
+      </div>
+
+    </div>
+
+    {/* COPYRIGHT */}
+    <div className="text-left md:text-center px-5 md:px-6 pb-6 
+    text-xs md:text-sm text-muted-inverse font-body opacity-70">
+      © 2024 Brewista Cafe. All Rights Reserved.
+    </div>
+
+  </div>
+</footer>
 
     </main>
   );

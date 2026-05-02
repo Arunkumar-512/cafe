@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
   const { cart } = useCart();
   const pathname = usePathname();
 
@@ -16,7 +18,6 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -30,80 +31,115 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 py-4">
+    <header className="sticky top-0 z-50 px-3 sm:px-4 py-3">
 
-      {/* NAVBAR CONTAINER */}
       <div
-        className={`container rounded-2xl transition-all duration-300 ${
-          scrolled
-            ? "backdrop-blur-md bg-[rgba(75,46,43,0.65)] shadow-lg border border-white/10"
-            : "bg-[var(--primary)] shadow-md"
-        }`}
+        className={`
+        container rounded-2xl transition-all duration-300
+        ${scrolled
+          ? "bg-white/10 backdrop-blur-md border border-white/10 shadow-lg"
+          : "bg-[var(--primary)] shadow-md"}
+        `}
       >
-        <div className="flex justify-between items-center px-6 py-4 text-white">
+        <div className="flex justify-between items-center px-4 sm:px-6 py-3 text-white">
 
-          {/* LOGO */}
           <Link
             href="/"
-            className="text-2xl font-heading tracking-wide hover:opacity-90 transition"
+            className="text-lg sm:text-xl md:text-2xl font-heading tracking-wide"
           >
             ☕ Brewista
           </Link>
 
-          {/* DESKTOP NAV */}
-          <nav className="hidden md:flex gap-8 text-sm font-medium">
+          <nav className="hidden md:flex gap-6 lg:gap-8 text-sm font-medium">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 href={link.path}
-                className={`transition ${
-                  pathname === link.path
-                    ? "text-[var(--accent)]"
-                    : "hover:text-[var(--accent)]"
-                }`}
+                className={`
+                relative transition
+                ${pathname === link.path
+                  ? "text-[var(--accent)]"
+                  : "hover:text-[var(--accent)]"}
+                `}
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          {/* RIGHT SIDE */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
 
-            {/* CART */}
             <Link
               href="/orders"
-              className="relative text-xl hover:scale-110 transition"
+              className="relative text-lg sm:text-xl hover:scale-110 transition"
             >
               🛒
-
               {totalItems > 0 && (
                 <span
-                  className="absolute -top-2 -right-2 
-                  bg-[var(--accent)] text-white 
-                  text-[10px] font-semibold 
-                  px-2 py-0.5 rounded-full shadow"
+                  className="
+                  absolute -top-2 -right-2
+                  bg-[var(--accent)] text-white
+                  text-[10px] font-semibold
+                  px-1.5 py-0.5 rounded-full
+                  shadow-md
+                  "
                 >
                   {totalItems}
                 </span>
               )}
             </Link>
 
-            {/* CTA */}
             <Link href="/orders">
-              <button className="btn-primary hidden md:block text-sm">
+              <button className="btn-primary hidden md:block text-sm px-4 py-2">
                 Order Now
               </button>
             </Link>
 
-            {/* MOBILE MENU ICON */}
-            <div className="md:hidden text-2xl cursor-pointer hover:scale-110 transition">
-              ☰
-            </div>
+            <button
+              onClick={() => setOpen(!open)}
+              className="md:hidden text-2xl hover:scale-110 transition"
+            >
+              {open ? "✕" : "☰"}
+            </button>
 
           </div>
-
         </div>
+
+        <div
+          className={`
+          md:hidden overflow-hidden transition-all duration-300
+          ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
+          `}
+        >
+          <div className="flex flex-col px-4 pb-4 gap-3 text-white">
+
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                href={link.path}
+                onClick={() => setOpen(false)}
+                className={`
+                py-2 px-3 rounded-lg text-sm
+                transition
+                ${pathname === link.path
+                  ? "bg-white/20 text-[var(--accent)]"
+                  : "hover:bg-white/10"}
+                `}
+              >
+                {link.name}
+              </Link>
+            ))}
+
+            <Link href="/orders" onClick={() => setOpen(false)}>
+              <button className="w-full mt-2 py-2.5 rounded-lg text-sm font-body
+              bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]">
+                Order Now
+              </button>
+            </Link>
+
+          </div>
+        </div>
+
       </div>
     </header>
   );
