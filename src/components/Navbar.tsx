@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/store/cartStore";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -15,9 +16,7 @@ export default function Navbar() {
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -50,13 +49,14 @@ export default function Navbar() {
             ☕ Brewista
           </Link>
 
+          {/* DESKTOP NAV */}
           <nav className="hidden md:flex gap-6 lg:gap-8 text-sm font-medium">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 href={link.path}
                 className={`
-                relative transition
+                transition
                 ${pathname === link.path
                   ? "text-[var(--accent)]"
                   : "hover:text-[var(--accent)]"}
@@ -68,6 +68,10 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3 sm:gap-4">
+
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
 
             <Link
               href="/orders"
@@ -105,6 +109,7 @@ export default function Navbar() {
           </div>
         </div>
 
+        {/* MOBILE MENU */}
         <div
           className={`
           md:hidden overflow-hidden transition-all duration-300
@@ -112,6 +117,11 @@ export default function Navbar() {
           `}
         >
           <div className="flex flex-col px-4 pb-4 gap-3 text-white">
+
+            <div className="flex justify-between items-center px-2 py-2">
+              <span className="text-sm opacity-80">Theme</span>
+              <ThemeToggle />
+            </div>
 
             {navLinks.map((link) => (
               <Link

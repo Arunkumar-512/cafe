@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -30,10 +31,11 @@ export default function HomePage() {
               <p className="font-body mb-6 text-base sm:text-lg md:text-xl text-body-inverse">
                 Handcrafted coffee made with love, just for you.
               </p>
-
-              <button className="btn-primary font-body px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base">
-                Order Now
-              </button>
+              <Link href="/menu">
+                <button className="btn-primary font-body px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base">
+                  Order Now
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -46,65 +48,77 @@ export default function HomePage() {
             Why Choose Us
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {[
-              { title: "Premium Quality", desc: "We use the finest coffee beans" },
-              { title: "Skilled Baristas", desc: "Expertly crafted just for you" },
-              { title: "Cozy Atmosphere", desc: "A perfect place to relax" },
-              { title: "Sustainable", desc: "We care for the planet" },
-            ].map((item, index) => (
-              <div key={index} className="space-y-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+  {[
+    { image: "/images/home_icon1.png", title: "Premium Quality", desc: "We use the finest coffee beans" },
+    { image: "/images/home_icon2.png", title: "Skilled Baristas", desc: "Expertly crafted just for you" },
+    { image: "/images/home_icon3.png", title: "Cozy Atmosphere", desc: "A perfect place to relax" },
+    { image: "/images/home_icon4.png", title: "Sustainable", desc: "We care for the planet" },
+  ].map((item, index) => (
+    <div
+      key={index}
+      className="space-y-3 text-center flex flex-col items-center"
+    >
+      <div className="flex justify-center items-center">
+        <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center">
+          <Image
+            src={item.image}
+            alt={item.title}
+            width={96}
+            height={96}
+            className="object-contain"
+          />
+        </div>
+      </div>
 
-                <div className="text-2xl md:text-3xl text-secondary">☕</div>
+      <h4 className="font-semibold font-body text-sm md:text-base text-primary">
+        {item.title}
+      </h4>
 
-                <h4 className="font-semibold font-body text-sm md:text-base text-primary">
-                  {item.title}
-                </h4>
-
-                <p className="text-xs md:text-sm text-body font-body opacity-80">
-                  {item.desc}
-                </p>
-
-              </div>
-            ))}
-          </div>
+      <p className="text-xs md:text-sm text-body font-body opacity-80 max-w-[160px]">
+        {item.desc}
+      </p>
+    </div>
+  ))}
+</div>
         </div>
       </section>
 
       <section className="container grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 
-        <div className="relative h-[260px] sm:h-[320px] md:h-[420px] rounded-2xl md:rounded-3xl overflow-hidden">
-          <Image
-            src="/images/iced_coffee.jpg"
-            alt="Iced Coffee"
-            fill
-            className="object-cover hover:scale-105 transition duration-500"
-          />
-        </div>
+  <div className="relative h-[240px] sm:h-[300px] md:h-[520px] rounded-xl overflow-hidden">
+    <Image
+      src="/images/iced_coffee.jpg"
+      alt="Iced Coffee"
+      fill
+      className="object-cover"
+      priority
+    />
+  </div>
 
-        <div className="p-2 md:p-6 text-center md:text-left">
+  <div className="p-2 md:p-6 text-center md:text-left">
 
-          <h3 className="font-heading text-2xl sm:text-3xl md:text-5xl mb-4 leading-tight text-primary">
-            Specialty Coffee <br className="hidden md:block" /> Made for You
-          </h3>
+    <h3 className="font-heading text-2xl sm:text-3xl md:text-5xl mb-4 leading-tight text-primary">
+      Specialty Coffee <br className="hidden md:block" /> Made for You
+    </h3>
 
-          <p className="mb-6 text-sm md:text-base text-body font-body opacity-80">
-            From rich espresso to smooth lattes, every sip is a moment of happiness.
-          </p>
+    <p className="mb-6 text-sm md:text-base text-body font-body opacity-80 max-w-md mx-auto md:mx-0">
+      From rich espresso to smooth lattes, every sip is a moment of happiness.
+    </p>
 
-          <button className="btn-primary font-body px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base">
-            Explore Menu
-          </button>
-        </div>
+    <button className="btn-primary font-body px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base">
+      Explore Menu
+    </button>
 
-      </section>
+  </div>
+
+</section>
 <footer className="py-8 md:py-10">
   <div className="container rounded-2xl shadow-card bg-primary text-heading-inverse">
     
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 
     gap-8 md:gap-10 px-5 md:px-6 py-8 md:py-10 text-left">
 
-      {/* BRAND */}
       <div>
         <h4 className="font-heading text-lg md:text-xl mb-3">☕ Brewista</h4>
         <p className="text-xs md:text-sm text-body-inverse font-body opacity-80 leading-relaxed">
@@ -112,7 +126,6 @@ export default function HomePage() {
         </p>
       </div>
 
-      {/* LINKS */}
       <div>
         <h5 className="font-heading mb-3 md:mb-4 text-sm md:text-base">
           Quick Links
@@ -126,7 +139,6 @@ export default function HomePage() {
         </ul>
       </div>
 
-      {/* HOURS */}
       <div>
         <h5 className="font-heading mb-3 md:mb-4 text-sm md:text-base">
           Opening Hours
@@ -137,20 +149,18 @@ export default function HomePage() {
         </p>
       </div>
 
-      {/* SUBSCRIBE */}
       <div>
         <h5 className="font-heading mb-3 md:mb-4 text-sm md:text-base">
           Subscribe
         </h5>
 
-        {/* MOBILE: stacked | DESKTOP: inline */}
         <div className="flex flex-col sm:flex-row gap-2">
           <input
             type="email"
             placeholder="Your email"
             className="w-full px-3 py-2 rounded-md 
-            text-primary text-xs md:text-sm 
-            bg-white font-body outline-none"
+            text-primary text-xs md:text-sm border border-white/30
+            bg-secondary font-body outline-none"
           />
 
           <button className="btn-primary text-xs md:text-sm px-4 py-2 w-full sm:w-auto">
@@ -161,7 +171,6 @@ export default function HomePage() {
 
     </div>
 
-    {/* COPYRIGHT */}
     <div className="text-left md:text-center px-5 md:px-6 pb-6 
     text-xs md:text-sm text-muted-inverse font-body opacity-70">
       © 2024 Brewista Cafe. All Rights Reserved.
